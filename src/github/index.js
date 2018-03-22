@@ -2,7 +2,9 @@ import * as githubActions from "./actions";
 import * as types from "./types";
 import { combineReducers } from 'redux';
 
-const initialState = {};
+const initialState = {
+  
+};
 
 const repoReducer = (state = initialState, action) => {
   switch (action.type) {
