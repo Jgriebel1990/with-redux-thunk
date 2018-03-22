@@ -7,11 +7,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={e => {
+              e.preventDefault()
+              this.props.add(this.props.search);
+          }}>
           <input type="text" value={this.props.search} onChange={e => this.props.updateSearch(e.target.value)}/>
         </form>
         <hr/>
-        {JSON.stringify(this.props.repo, null, 4)}
+        <pre>{JSON.stringify(this.props.repo, null, 4)}</pre>
       </div>
     );
   }

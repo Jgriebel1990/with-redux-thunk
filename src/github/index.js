@@ -9,7 +9,10 @@ const repoReducer = (state = initialState, action) => {
     case types.FETCH_REPO_START:
       return state;
     case types.FETCH_REPO_SUCCESS:
-      return state;
+      return {
+        ...state,
+        ...action.payload.value
+      };
     case types.FETCH_REPO_FAILURE:
       return state;
     default:
