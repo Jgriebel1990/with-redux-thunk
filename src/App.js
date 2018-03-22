@@ -7,11 +7,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={() => {}}>
-          <input type="text"/>
+        <form onSubmit={e => e.preventDefault()}>
+          <input type="text" value={this.props.search} onChange={e => this.props.updateSearch(e.target.value)}/>
         </form>
         <hr/>
-        {JSON.stringify({}, null, 4)}
+        {JSON.stringify(this.props.repo, null, 4)}
       </div>
     );
   }
@@ -19,13 +19,15 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    cheese: 'here'
+    search: state.search,
+    repo: state.repo
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    add: (name) => dispatch(githubActions.fetchRepo(name))
+    add: (name) => dispatch(githubActions.fetchRepo(name)),
+    updateSearch: (search) => dispatch(githubActions.setSearch(search))
   }
 }
 

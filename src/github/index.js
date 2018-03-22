@@ -1,25 +1,36 @@
-import * as githubActions from './actions'
-import * as types from './types';
+import * as githubActions from "./actions";
+import * as types from "./types";
+import { combineReducers } from 'redux';
 
-const initialState = {
-    repo: null
-}
+const initialState = {};
 
-const reducer = (state=initialState, action) => {
-    switch(action.type){
-        case types.FETCH_REPO_START:
-            return state;
-        case types.FETCH_REPO_SUCCESS:
-            return state;
-        case types.FETCH_REPO_FAILURE:
-            return state;
-        default:
-            return state;
-    }
-}
+const repoReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case types.FETCH_REPO_START:
+      return state;
+    case types.FETCH_REPO_SUCCESS:
+      return state;
+    case types.FETCH_REPO_FAILURE:
+      return state;
+    default:
+      return state;
+  }
+};
 
-export {
-    githubActions
-}
+const searchInitial = "";
 
-export default reducer;
+const searchReducer = (state = searchInitial, action) => {
+  switch (action.type) {
+    case types.UPDATE_SEARCH:
+      return action.payload.value;
+    default:
+      return state;
+  }
+};
+
+export { githubActions };
+
+export default combineReducers({
+  repo: repoReducer,
+  search: searchReducer
+});
